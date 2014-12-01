@@ -1,4 +1,4 @@
-#include <SevenSeg.h>
+#include <SevenSegI2C.h>
 
 int DIG1 = 2;
 int DIG2 = 7;

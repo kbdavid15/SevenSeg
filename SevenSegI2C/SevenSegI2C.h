@@ -1,9 +1,9 @@
 /*
-  SevenSeg.h - Library for writing to 7 segment displays using I2C
+  SevenSegI2C.h - Library for writing to 7 segment displays using I2C
   Kyle David
 */
-#ifndef SevenSeg_h
-#define SevenSeg_h
+#ifndef SevenSegI2C_h
+#define SevenSegI2C_h
 
 #include "Arduino.h"
 #include <Wire.h>
