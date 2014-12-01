@@ -5,7 +5,7 @@ Kyle David
 */
 
 #include "Arduino.h"
-#include "Wire.h"
+#include <Wire.h>
 #include "SevenSeg.h"
 
 // number values need to be inverted due to common anode configuration
@@ -49,9 +49,8 @@ void SevenSeg::setNumber(int value)
 	{
 		for (int i = 0; i < 8; i++)
 		{
-			_shiftRegister[i] = ((~_NUMBER[value] >> (7 - i)) & 1) == 1 ? HIGH : LOW; 
+			//_shiftRegister[i] = ((~_NUMBER[value] >> (7 - i)) & 1) == 1 ? HIGH : LOW; 
 		}
-		writeRegisters();
 	}
 }
 
@@ -62,8 +61,8 @@ void SevenSeg::clear()
 	_num1 = _CLEAR;
 }
 
-void SevenSeg::split(int input, int& first, int& second)
+void SevenSeg::split(int input, int * pFirst, int * pSecond)
 {
-   first = input / 10;
-   second = input % 10;
+   *pFirst = input / 10;
+   *pSecond = input % 10;
 }

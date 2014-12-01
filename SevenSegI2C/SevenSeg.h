@@ -6,6 +6,7 @@
 #define SevenSeg_h
 
 #include "Arduino.h"
+#include <Wire.h>
 
 class SevenSeg
 {
@@ -18,6 +19,6 @@ class SevenSeg
 		int _address, _DIG0, _DIG1;
 		int _num0, _num1;
 		// function prototypes
-		void split(int input, int& first, int& second);
+		void split(int input, int * pFirst, int * pSecond);
 };
 #endif
