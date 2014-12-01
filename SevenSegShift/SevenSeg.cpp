@@ -6,13 +6,16 @@ Kyle David
 
 #include "Arduino.h"
 #include "SevenSeg.h"
-const unsigned char _NUMBER[] = { 0xFC, 0x60, 0xDA, 0xF2, 0x66, 0xB6, 0xBE, 0xE4,	0xFE, 0xF6 };
+const unsigned char _NUMBER[] = { 0xFC, 0x60, 0xDA, 0xF2, 0x66, 0xB6, 0xBE, 0xE4, 0xFE, 0xF6 };
 
 SevenSeg::SevenSeg(int numRegisters, int SER, int RCLK, int SRCLK, int DIG0, int DIG1)
 {
 	pinMode(SER, OUTPUT);
 	pinMode(RCLK, OUTPUT);
 	pinMode(SRCLK, OUTPUT);
+	// make _shiftRegister static so it can be accessed by red or blue instances of this class
+	// try to use default frequency of Timer 0 to set interrupts. On interrupt write the value of the register
+	// could have a register for digit 1 and another for digit 2
 	
 	_numOfRegisterPins = numRegisters * 8;	
 	_numRegisters = numRegisters;
