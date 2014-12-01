@@ -45,6 +45,26 @@ void SevenSeg::setNumber(int value)
 	}
 }
 
+void SevenSeg::writeDigit(int digit)
+{
+	if (digit == _DIG0)
+	{
+		digitalWrite(_DIG1, LOW);
+		Wire.beginTransmission(address);
+		Wire.write(~_num0);
+		Wire.endTransmission();
+		digitalWrite(_DIG0, HIGH);
+	}
+	else if (digit == _DIG1)
+	{
+		digitalWrite(_DIG0, LOW);
+		Wire.beginTransmission(address);
+		Wire.write(~_num1);
+		Wire.endTransmission();
+		digitalWrite(_DIG1, HIGH);
+	}
+}
+
 // writes high to both digits, so nothing is displayed
 void SevenSeg::clear()
 {

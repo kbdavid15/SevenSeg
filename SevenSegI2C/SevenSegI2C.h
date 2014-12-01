@@ -14,6 +14,7 @@ class SevenSeg
 		SevenSeg(int address, int DIG0, int DIG1);
 		void configureInterrupt();
 		void setNumber(int value);
+		void writeDigit(int digit);
 		void clear();
 	private:
 		int _address, _DIG0, _DIG1;
