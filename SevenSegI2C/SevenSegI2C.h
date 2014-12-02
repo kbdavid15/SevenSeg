@@ -14,11 +14,12 @@ class SevenSeg
 		SevenSeg(int address, int DIG0, int DIG1);
 		void configureInterrupt();
 		void setNumber(int value);
+		unsigned char getDigit(int digit);
 		void writeDigit(int digit);
 		void clear();
 	private:
 		int _address, _DIG0, _DIG1;
-		int _num0, _num1;
+		unsigned char _num0, _num1;
 		// function prototypes
 		void split(int input, int * pFirst, int * pSecond);
 };

@@ -29,6 +29,19 @@ void SevenSeg::configureInterrupt()
 
 }
 
+// should only be called after setNumber() is called
+unsigned char SevenSeg::getDigit(int digit)
+{
+	switch (digit)
+	{
+	case _DIG1:
+		return _num1;
+	case _DIG0;
+		return _num0;
+	}
+	return _CLEAR;	// must have some return value
+}
+
 void SevenSeg::setNumber(int value)
 {
 	if (value > 9 && value < 100)
@@ -47,22 +60,22 @@ void SevenSeg::setNumber(int value)
 
 void SevenSeg::writeDigit(int digit)
 {
-	if (digit == _DIG0)
-	{
-		digitalWrite(_DIG1, LOW);
-		Wire.beginTransmission(address);
-		Wire.write(~_num0);
-		Wire.endTransmission();
-		digitalWrite(_DIG0, HIGH);
-	}
-	else if (digit == _DIG1)
-	{
-		digitalWrite(_DIG0, LOW);
-		Wire.beginTransmission(address);
-		Wire.write(~_num1);
-		Wire.endTransmission();
-		digitalWrite(_DIG1, HIGH);
-	}
+	//if (digit == _DIG0)
+	//{
+	//	digitalWrite(_DIG1, LOW);
+	//	Wire.beginTransmission(address);
+	//	Wire.write(~_num0);
+	//	Wire.endTransmission();
+	//	digitalWrite(_DIG0, HIGH);
+	//}
+	//else if (digit == _DIG1)
+	//{
+	//	digitalWrite(_DIG0, LOW);
+	//	Wire.beginTransmission(address);
+	//	Wire.write(~_num1);
+	//	Wire.endTransmission();
+	//	digitalWrite(_DIG1, HIGH);
+	//}
 }
 
 // writes high to both digits, so nothing is displayed
