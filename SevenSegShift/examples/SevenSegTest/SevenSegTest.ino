@@ -35,6 +35,7 @@ void setup()
 
 ISR(TIMER0_COMPA_vect){//timer1 interrupt 1Hz toggles pin 13 (LED)
 //generates pulse wave of frequency 1Hz/2 = 0.5kHz (takes two cycles for full wave- toggle high then toggle low)
+  Serial.println("HI");
   if (toggle1){
     digitalWrite(DIG2, LOW);
     seg.setNumber(1);
