@@ -1,11 +1,13 @@
+#include <TimerOne.h>
+
 #include <SevenSegI2C.h>
 #include <Wire.h>
 
 int DIG1 = 2;
 int DIG2 = 7;
 int timer1_counter;
-boolean toggle = 0;
-
+boolean toggle = false;
+int i = 0;
 SevenSeg *redSeg;
 
 //SevenSeg seg(0x20, DIG1, DIG2);
@@ -13,7 +15,12 @@ SevenSeg *redSeg;
 void setup()
 {
   Serial.begin(9600);
-  redSeg = new SevenSeg(0x20, DIG1, DIG2);  
+  redSeg = new SevenSeg(0x20, DIG1, DIG2);
+  redSeg->setNumber(13);
+  
+  Timer1.initialize(10000);
+  Timer1.attachInterrupt(callback);
+  
 //  // initialize timer1 
 //  noInterrupts();           // disable all interrupts
 //  //set timer0 interrupt at 2kHz
@@ -33,7 +40,7 @@ void setup()
 
 void callback()
 {
-  Serial.println("HI");
+  toggle = !toggle;
 }
 
 ISR(TIMER0_COMPA_vect)        // interrupt service routine 
@@ -53,13 +60,18 @@ ISR(TIMER0_COMPA_vect)        // interrupt service routine
 
 void loop()
 {
-//  for (int i = 0; i < 100; i++) {
-//    redSeg->setNumber(i);
-//    //delay(500);
-//  }
-  
-  redSeg->setNumber(13);
-  redSeg->writeDigit(DIG2);  
-  
+  redSeg->setNumber(i++);
+  if (i>99){
+    i = 0;
+  }
+  if (toggle)
+  {
+    redSeg->writeDigit(DIG1);
+  }
+  else
+  {
+    redSeg->writeDigit(DIG2);
+  }
+  delay(50);
 }
 
