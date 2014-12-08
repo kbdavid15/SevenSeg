@@ -6,6 +6,7 @@ int DIG1 = 2;
 int DIG2 = 7;
 int redPot = A1;
 int bluePot = A3;
+int mode = 4;
 
 int temp;
 int lastValueRed = 0;
@@ -21,6 +22,7 @@ void setup()
   
   pinMode(redPot, INPUT);
   pinMode(bluePot, INPUT);
+  pinMode(mode, INPUT);
   
   Timer1.initialize(10000);
   Timer1.attachInterrupt(callback);
@@ -33,6 +35,8 @@ void callback()
 
 void loop()
 {
+  seg->setMode(digitalRead(mode));
+  
   temp = analogRead(redPot);
   if (abs(temp - lastValueRed) > 5) {
     lastValueRed = temp;

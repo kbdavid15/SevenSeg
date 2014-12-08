@@ -20,10 +20,12 @@ class SevenSeg
 		void write(bool toggle);
 		void clearRed();
 		void clearBlue();
+		void setMode(bool mode = true);
 
 	private:
 		int _redAddress, _blueAddress, _DIG0, _DIG1;
 		unsigned char _red[2], _blue[2];
+		bool _mode;
 		// function prototype
 		void split(int input, int * pFirst, int * pSecond);
 };

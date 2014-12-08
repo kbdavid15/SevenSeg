@@ -22,6 +22,8 @@ SevenSeg::SevenSeg(int redAddress, int blueAddress, int DIG0, int DIG1)
 	_DIG0 = DIG0;
 	_DIG1 = DIG1;
 
+	setMode();	// default mode is true, represents manual mode
+
 	Wire.begin();
 }
 
@@ -39,6 +41,11 @@ void SevenSeg::setRedNumber(int value)
 		_red[1] = _NUMBER[value];
 		_red[0] = _CLEAR;
 	}
+	
+	if (_mode == false)
+	{
+		_red[1] |= (1 << 7);
+	}
 }
 
 void SevenSeg::setBlueNumber(int value)
@@ -54,6 +61,11 @@ void SevenSeg::setBlueNumber(int value)
 	{
 		_blue[1] = _NUMBER[value];
 		_blue[0] = _CLEAR;
+	}
+
+	if (_mode == false)
+	{
+		_blue[1] |= (1 << 7);
 	}
 }
 
@@ -98,6 +110,14 @@ void SevenSeg::clearBlue()
 {
 	_blue[0] = _CLEAR;
 	_blue[1] = _CLEAR;
+}
+
+// if mode = true, manual mode is enabled
+// if mode = false, auto mode is enabled.
+// Auto mode is signified by lighting up the decimal point
+void SevenSeg::setMode(bool mode)
+{
+	_mode = mode;
 }
 
 void SevenSeg::split(int input, int * pFirst, int * pSecond)
