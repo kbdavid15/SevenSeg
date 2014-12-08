@@ -7,19 +7,17 @@ int DIG2 = 7;
 int redPot = A1;
 int bluePot = A3;
 
+int temp;
 int lastValueRed = 0;
 int lastValueBlue = 0;
 
 boolean toggle = false;
-
-SevenSeg *redSeg;
-SevenSeg *blueSeg;
+SevenSeg *seg;
 
 void setup()
 {
   Serial.begin(9600);
-  redSeg = new SevenSeg(0x20, DIG1, DIG2);
-  blueSeg = new SevenSeg(0x21, DIG1, DIG2);
+  seg = new SevenSeg(0x20, 0x21, DIG1, DIG2);
   
   pinMode(redPot, INPUT);
   pinMode(bluePot, INPUT);
@@ -35,27 +33,17 @@ void callback()
 
 void loop()
 {
-  int temp = analogRead(redPot);
+  temp = analogRead(redPot);
   if (abs(temp - lastValueRed) > 5) {
     lastValueRed = temp;
-    redSeg->setNumber(map(lastValueRed, 0, 1023, 0, 99));
+    seg->setRedNumber(map(lastValueRed, 0, 1023, 0, 99));
   }
   
   temp = analogRead(bluePot);
   if (abs(temp - lastValueBlue) > 5) {
-    Serial.println(temp);
     lastValueBlue = temp;
-    blueSeg->setNumber(map(lastValueBlue, 0, 1023, 0, 99));
+    seg->setBlueNumber(map(lastValueBlue, 0, 1023, 0, 99));
   }
   
-  if (toggle)
-  {
-    redSeg->writeDigit(DIG1);
-    blueSeg->writeDigit(DIG1);
-  }
-  else
-  {
-    redSeg->writeDigit(DIG2);
-    blueSeg->writeDigit(DIG2);
-  }
+  seg->write(toggle);
 }
