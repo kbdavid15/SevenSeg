@@ -9,7 +9,7 @@ Kyle David
 #include "SevenSegI2C.h"
 
 // number values need to be inverted due to common anode configuration
-const unsigned char _NUMBER[] = { 0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x27, 0x7F, 0x6F };
+const unsigned char _NUMBER[] = { 0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07, 0x7F, 0x6F };
 const unsigned char _CLEAR = 0x00;
 
 SevenSeg::SevenSeg(int redAddress, int blueAddress, int DIG0, int DIG1)
