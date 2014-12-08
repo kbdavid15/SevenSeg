@@ -11,16 +11,19 @@
 class SevenSeg
 {
 	public:
-		SevenSeg(int address, int DIG0, int DIG1);
-		void configureInterrupt();
+		// constructor
+		SevenSeg(int address, int DIG0, int DIG1);		
+
+		// function prototypes
 		void setNumber(int value);
-		unsigned char getDigit(int digit);
 		void writeDigit(int digit);
+		unsigned char getDigit(int digit);		
 		void clear();
+
 	private:
 		int _address, _DIG0, _DIG1;
 		unsigned char _num0, _num1;
-		// function prototypes
+		// function prototype
 		void split(int input, int * pFirst, int * pSecond);
 };
 #endif

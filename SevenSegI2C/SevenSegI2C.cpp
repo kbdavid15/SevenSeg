@@ -26,10 +26,6 @@ SevenSeg::SevenSeg(int address, int DIG0, int DIG1)
 	Wire.begin();
 }
 
-void SevenSeg::configureInterrupt()
-{
-
-}
 
 // should only be called after setNumber() is called
 unsigned char SevenSeg::getDigit(int digit)
@@ -57,6 +53,8 @@ void SevenSeg::setNumber(int value)
 		_num0 = _CLEAR;
 	}
 }
+
+
 
 void SevenSeg::writeDigit(int digit)
 {
