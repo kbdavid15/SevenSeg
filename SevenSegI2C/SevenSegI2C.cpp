@@ -17,6 +17,10 @@ SevenSeg::SevenSeg(int redAddress, int blueAddress, int DIG0, int DIG1)
 	pinMode(DIG0, OUTPUT);
 	pinMode(DIG1, OUTPUT);
 
+	// set DIG0 and 1 low initially so no garbage is displayed before a value is set
+	digitalWrite(DIG0, LOW);
+	digitalWrite(DIG1, LOW);
+
 	_redAddress = redAddress;
 	_blueAddress = blueAddress;
 	_DIG0 = DIG0;
