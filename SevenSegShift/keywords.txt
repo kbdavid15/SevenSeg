@@ -5,14 +5,14 @@
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
-SevenSeg KEYWORD1
-Color KEYWORD1
+SevenSeg	KEYWORD1
+Color	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
-setNumber KEYWORD2
-clear KEYWORD2
+setNumber	KEYWORD2
+clear	KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
